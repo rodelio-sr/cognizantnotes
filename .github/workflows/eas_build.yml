@@ -1,4 +1,4 @@
-name: Android App APK Build
+name: Cognizant Notes Build
 
 on:
   push:
@@ -22,10 +22,17 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Build Android app
+      - name: Build Android APP
         run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: ${{ github.workspace }}/app-release.apk
+      - name: Build IOS APP
+        run: eas build --platform ios --profile preview --local --output ${{ github.workspace }}/app-release.ipa
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: ${{ github.workspace }}/app-release.ipa         
