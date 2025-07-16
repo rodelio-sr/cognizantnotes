@@ -29,10 +29,4 @@ jobs:
         with:
           name: app-release
           path: ${{ github.workspace }}/app-release.apk
-      - name: Build IOS APP
-        run: eas build --platform ios --profile preview --local --output ${{ github.workspace }}/app-release.ipa
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release
-          path: ${{ github.workspace }}/app-release.ipa         
+    
