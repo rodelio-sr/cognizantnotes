@@ -22,7 +22,7 @@ jobs:
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-          pakager: npm
+          packager: npm
       - name: Build Android APP
         run: npm run build:android
       - name: Upload to  Play Store Internal Testing
