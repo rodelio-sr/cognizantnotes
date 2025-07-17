@@ -34,13 +34,14 @@ jobs:
         with:
           name: app-release
           path: ${{ github.workspace }}/app-release.aab 
-      - name: Upload .aab to Internal Track
-        id: upload_internal
-        uses: KevinRohn/github-action-upload-play-store@v1.0.0
+      - name: Upload .aab to Play Store Internal Track
+      - uses: vacxe/google-play-cli-kt@master
         with:
-          service_account_json: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
-          package_name: "com.rodeliosr.cognizantnotes"
-          aab_file_path: "${{ github.workspace }}/app-release.aab"
-          track: "internal"
-          release_status: "draft"
-     
+          template: apk-upload
+          service-account-json: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSO }}
+          version-code: ${{ github.run_number }}
+          package-name: com.rodeliosr.cognizantnotes
+          path-to-apk: ${{ github.workspace }}/app-release.aab
+          track: internal
+          status: draft
+      
