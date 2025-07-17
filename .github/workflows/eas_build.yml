@@ -31,5 +31,13 @@ jobs:
           name: app-release
           path: ${{ github.workspace }}/app-release.aab 
       - name: Submit Android App
-        run: eas submit --platform android --profile production --path ${{ github.workspace }}/app-release.aab --non-interactive
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.rodeliosr.cognizantnotes
+          releaseFiles: ${{ github.workspace }}/app-release.aab
+          track: internal
+          status: draft
+          inAppUpdatePriority: 2
+
      
