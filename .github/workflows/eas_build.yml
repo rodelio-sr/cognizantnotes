@@ -24,7 +24,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
           packager: npm
       - name: Build Android APP
-        run: npm run build:android
+        run: npm run build:production
       - name: Upload to  Play Store Internal Testing
         uses: r0adkll/upload-google-play@v1
         with:
