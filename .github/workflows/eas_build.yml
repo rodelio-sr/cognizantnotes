@@ -17,27 +17,17 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm install
-      - name: Build with EAS
-        uses: expo/eas-cli@v2
-        with:
-          token: ${{ secrets.EXPO_TOKEN }}
-          command: build:run --platform android --profile preview --non-interactive
-      - name: Submit to App Stores
-        uses: expo/eas-cli@v2
-        with:
-          token: ${{ secrets.EXPO_TOKEN }}
-          command: submit --platform anroid --latest
         
-    #   - name: Setup Expo
-  #       uses: expo/expo-github-action@v8
-  #       with:
-  #        eas-version: latest
-   #        token: ${{ secrets.EXPO_TOKEN }}
-    #       packager: npm
-  #    - name: Build Android APP
-  #      run: eas build --platform android --profile production 
-  #    - name: Submit Android App
-  #      run: eas submit --platform android --latest --profile production --non-interactive
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          packager: npm
+      - name: Build Android APP
+        run: eas build --platform android --profile production 
+      - name: Submit Android App
+        run: eas submit --platform android --latest --profile production --non-interactive
    #    - name: Build Local Android Package
    #      run: eas build --platform android --profile production --local --output ${{ github.workspace }}/app-release.apk
    #    - name: Upload Build Artifact
