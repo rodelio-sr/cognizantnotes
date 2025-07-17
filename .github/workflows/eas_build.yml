@@ -37,8 +37,8 @@ jobs:
       - name: Upload .aab to Play Store Internal Track
         uses: vacxe/google-play-cli-kt@master
         with:
-          template: apk-upload
-          service-account-json: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSO }}
+          template: apk-upload 
+          service-account-json: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
           version-code: ${{ github.run_number }}
           package-name: com.rodeliosr.cognizantnotes
           path-to-apk: ${{ github.workspace }}/app-release.aab
