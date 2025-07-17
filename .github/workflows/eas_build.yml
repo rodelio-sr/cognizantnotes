@@ -24,7 +24,12 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
           packager: npm
       - name: Build Android APP
-        run: eas build --platform android --profile production
-      - name: Submit Anroid App
-        run: eas submit --platform android --profile production
+        run: eas build --platform android --profile production --local --output ${{ github.workspace }}/app-release.aab
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: ${{ github.workspace }}/app-release.aab 
+      - name: Submit Android App
+        run: eas submit --platform android --profile production --path ${{ github.workspace }}/app-release.aab --non-interactive
      
