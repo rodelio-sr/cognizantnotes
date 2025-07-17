@@ -35,7 +35,7 @@ jobs:
           name: app-release
           path: ${{ github.workspace }}/app-release.aab 
       - name: Upload .aab to Play Store Internal Track
-      - uses: vacxe/google-play-cli-kt@master
+        uses: vacxe/google-play-cli-kt@master
         with:
           template: apk-upload
           service-account-json: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSO }}
