@@ -15,18 +15,23 @@ jobs:
         with:
           node-version: 20.x
           cache: npm
+      - name: Install dependencies
+        run: npm install
       - name: Setup Expo
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+          pakager: npm
       - name: Build Android APP
-        run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+        run: npm run build:android
+      - name: Upload to  Play Store Internal Testing
+        uses: r0adkll/upload-google-play@v1
         with:
-          name: app-release
-          path: ${{ github.workspace }}/app-release.apk
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.rodeliosr.cognizantnotes
+          releaseFiles: app-release.aab
+          track: internal
+          status: draft
+          inAppUpdatePriority: 2
     
