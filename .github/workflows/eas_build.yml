@@ -25,13 +25,6 @@ jobs:
           packager: npm
       - name: Build Android APP
         run: eas build --platform android --profile production
-      - name: Upload to  Play Store Internal Testing
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
-          packageName: com.rodeliosr.cognizantnotes
-          releaseFiles: app-release.aab
-          track: internal
-          status: draft
-          inAppUpdatePriority: 2
-    
+      - name: Submit Anroid App
+        run: eas submit --platform android --profile production
+     
