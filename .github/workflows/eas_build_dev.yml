@@ -3,7 +3,7 @@ name: Cognizant Notes Build
 on:
   push:
     branches:
-      - dev
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
